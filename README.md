@@ -37,4 +37,4 @@ I pledge that all the work in this repository is my own with only the following 
 
 Signed,
 
-**YAlexis Ford, Afnan Alqahtani**
+**Alexis Ford, Afnan Alqahtani**
