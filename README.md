@@ -26,7 +26,7 @@ Complete the following exercises, saving your solutions in the indicated files. 
 
 Analyze in this section what you found useful about this assignment in your own words. Include any lingering questions or comments that you may have.
 
-**CHANGEME**
+**the comments we made about each other homework helped us to know how to improve our code and make it more clear with the docstring style. Also the complexplane was a good exapmle to work with classes and subclasses. **
 
 ## Honor Pledge
 
@@ -37,4 +37,4 @@ I pledge that all the work in this repository is my own with only the following 
 
 Signed,
 
-**YOURNAME**
+**YAlexis Ford, Afnan Alqahtani**
