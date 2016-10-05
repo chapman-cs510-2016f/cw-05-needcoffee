@@ -21,7 +21,10 @@ class ComplexPlane(abscplane.AbsComplexPlane):
 	total points, while the parameter y ranges from self.ymin to
 	self.ymax with self.ylen total points. By default, the function
 	f is the identity function lamdax:x, which does nothing to
-	the bare complex plane.
+	the bare complex plane. Under this function, the plane is
+	organized to look like the mathematical complex plane, so
+	that real values inrease from left to right, and imaginary
+	values decrease from top to bottom.
     
 	Attributes:
 		xmax (float) : maximum horizontal axis value
@@ -49,17 +52,22 @@ class ComplexPlane(abscplane.AbsComplexPlane):
 		self.xmin = xmin
 		self.xmax = xmax
 		self.xlen = xlen
-		self.xtick = (xmax - xmin)/(xlen - 1.0) #calculate horizontal distance between each point
+		#xtick and ytick calculate distance between each point, not the number of points,
+		#hence subtracting 1
+		self.xtick = (xmax - xmin)/(xlen - 1.0) 
 		self.ymin = ymin
 		self.ymax = ymax
 		self.ylen = ylen
-		self.ytick = (ymax - ymin)/(ylen - 1.0) #calculate vertical distance between each point
+		self.ytick = (ymax - ymin)/(ylen - 1.0)
 		self.f = lambda x:x
 
 		self.plane = []
-		#generates a list of imaginary components using ytick as a stepsize
-		#then generates a list of real components using xtick as a stepsize
-		#pairs each real component with each imaginary component
+		#Generates a list of imaginary components using ytick as a stepsize,
+		#starting from the largest (top of plane) and counting down.
+		#Then generates a list of real components using xtick as a stepsize,
+		#starting from the smallest (left of plane) and counting up (right).
+		#Then pairs each real component with each imaginary component,
+		#creating a list of ascending lists of real components with the same imaginary component
 		for imaginary in [self.ymax - self.ytick*i for i in range(self.ylen)]:
 			self.plane.append([(real+1j*imaginary) for real in [self.xmin + self.xtick*i for i in range(self.xlen)]])
 
@@ -72,7 +80,7 @@ class ComplexPlane(abscplane.AbsComplexPlane):
 		for real in range(self.xlen):
 			for imaginary in range(self.ylen):
 				#goes through each point in the list of lists and applies f
-				self.plane[real][imaginary] = self.f(self.plane[real][imaginary])
+				self.plane[imaginary][real] = self.f(self.plane[imaginary][real])
 
 	def zoom(self, xmin, xmax, xlen, ymin, ymax, ylen):
 		"""Reset self.xmin, self.xmax, and/or self.xlen.
